@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+
+using namespace std;
+
+void solve(int n){
+    vector<vector<int>> child(n+1);
+    vector<bool> isleaf(n+1,true);
+
+    for(int i=2;i<=n;i++){
+        int p;
+        cin>> p;
+        child[p].push_back(i);
+        isleaf[p] = false;
+    }
+
+    for(int i=1;i<=n;i++){
+        if(!child[i].empty()){
+            int count = 0;
+
+            for(int it : child[i]){
+                if(isleaf[it]) count++;
+            }
+
+            if(count < 3){
+                cout << "No\n";
+                return;
+            }
+        }
+    }
+    cout << "Yes\n";
+}
+
+int main(){
+    int n;
+    cin >> n;
+
+    solve(n);
+    return 0;
+}
